@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { throttle } from "lodash";
+import { throttle } from "lodash-es";
 
 export type ScrollPosition = {
     x: number;
@@ -17,8 +17,8 @@ export function useScrollRecord() {
                 position.value.x = el.scrollLeft;
                 position.value.y = el.scrollTop;
             }, 100, { trailing: true });
-            scrollContent.value.addEventListener(handleScroll);
-            return ():void => removeEventListener(handleScroll);
+            scrollContent.value.addEventListener('scroll',handleScroll);
+            return ():void => removeEventListener('scroll',handleScroll);
         }
         return ():void=> {};
     }
